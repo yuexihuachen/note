@@ -1,0 +1,36 @@
+{
+  "name": "note",
+  "version": "1.0.0",
+  "description": "note",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm start",
+    "dev": "nodemon --exec babel-node --inspect server/src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuexihuachen/note.git"
+  },
+  "keywords": [
+    "note"
+  ],
+  "author": "longwang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuexihuachen/note/issues"
+  },
+  "homepage": "https://github.com/yuexihuachen/note#readme",
+  "dependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
+    "@babel/node": "^7.16.8",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/plugin-proposal-object-rest-spread": "^7.17.3",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "nodemon": "^2.0.15"
+  }
+}

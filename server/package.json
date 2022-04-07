@@ -1,0 +1,22 @@
+{
+  "name": "note-server",
+  "version": "1.0.0",
+  "description": "note-server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "note-server"
+  ],
+  "author": "longwang",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.13.4",
+    "koa-body": "^4.2.0",
+    "koa-compose": "^4.1.0",
+    "koa-compress": "^5.1.0",
+    "koa-router": "^10.1.1",
+    "nunjucks": "^3.2.3"
+  }
+}
