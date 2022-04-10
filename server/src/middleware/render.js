@@ -47,14 +47,22 @@ export default async (ctx, next) => {
         const html = await render(tpl(pageName), scope)
         ctx.body = html.trim().replace(/\n\s*/gmi, '')
     }
-
+    /**
+     * 渲染一个原始字符串而不是加载一个模板。不允许用户定义自己的模板
+     * @param {String} pageName 加载page的视图
+     * @reture 返回html
+     */
     ctx.renderString = async (pageName) => {
         const scope = ctx.state.scope
         const template = fs.readFileSync(tpl(pageName))
         return await renderString(template.toString(), scope)
     }
 
-    ctx.renderJSON = async (data) => {
+    /**
+     * @param {Object} 返回的数据
+     * 
+     */
+    ctx.renderJSON = ctx.renderJson = async (data) => {
         ctx.body = JSON.stringify(data)
     }
 

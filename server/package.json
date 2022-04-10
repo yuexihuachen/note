@@ -16,6 +16,7 @@
     "koa-body": "^4.2.0",
     "koa-compose": "^4.1.0",
     "koa-compress": "^5.1.0",
+    "koa-helmet": "^6.1.0",
     "koa-router": "^10.1.1",
     "nunjucks": "^3.2.3"
   }

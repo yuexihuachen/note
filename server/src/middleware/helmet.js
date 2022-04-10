@@ -1,0 +1,8 @@
+const helmet = require('koa-helmet')
+/**
+ * koa-helmet
+ * 通过设置 Http 头来使应用程序更加安全
+ */
+module.exports = () => {
+  return helmet()
+}
