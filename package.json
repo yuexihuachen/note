@@ -2,13 +2,16 @@
   "name": "note",
   "version": "1.0.0",
   "description": "note",
+  "private": true,
   "main": "index.js",
+  "engines": {
+    "node": "12"
+  },
   "directories": {
-    "test": "test"
   },
   "scripts": {
     "test": "npm start",
-    "dev": "nodemon --exec babel-node --inspect server/src/app.js"
+    "dev": "nodemon -e js,html --exec babel-node --inspect server/src/app.js  --watch server"
   },
   "repository": {
     "type": "git",

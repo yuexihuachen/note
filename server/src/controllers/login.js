@@ -5,7 +5,9 @@ async function login(ctx, next) {
 }
 
 async function update(ctx, next) {
-    ctx.body = await ctx.renderString('home')
+    await ctx.renderJson({
+        login: 'login update hello 123'
+    })
 }
 
 
