@@ -1,3 +1,4 @@
+"use strict";
 async function index(ctx, next) {
     await ctx.render('index')
 }

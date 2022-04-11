@@ -1,3 +1,4 @@
+"use strict";
 async function login(ctx, next) {
     await ctx.renderJson({
         login: 'login'
