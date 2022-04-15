@@ -8,8 +8,13 @@ import fs from "fs"
  */
 export default async (ctx, next) => {
     
+    /**
+     *  为啥放外面，因为build transform es5的时候不处理html
+     * @param {String} pageName 页面名称
+     * @returns 页面地址
+     */
     const tpl = pageName => {
-        return path.resolve(__dirname, `../views/${pageName}/index.html`)
+        return path.resolve(__dirname, `../../views/${pageName}/index.html`)
     }
 
     const render = async (name, scope) => {

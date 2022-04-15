@@ -1,24 +1,21 @@
 {
   "name": "note",
-  "version": "1.0.0",
-  "description": "note",
+  "description": "note root",
   "private": true,
-  "main": "index.js",
   "engines": {
     "node": "12"
   },
-  "directories": {},
   "scripts": {
     "test": "npm start",
-    "dev": "nodemon -e js,html --exec babel-node --inspect server/src/app.js"
+    "dev": "nodemon -e js,html --exec babel-node --inspect=9230 server/src/app.js",
+    "start": "node server/dist/app.js",
+    "server:transform": "babel --config-file ./babel.config.json server/src --out-dir server/dist",
+    "build": "npm run build --prefix client"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yuexihuachen/note.git"
   },
-  "keywords": [
-    "note"
-  ],
   "author": "longwang",
   "license": "ISC",
   "bugs": {
@@ -33,14 +30,6 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.17.3",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
-    "@reduxjs/toolkit": "^1.8.1",
-    "axios": "^0.26.1",
-    "nodemon": "^2.0.15",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-redux": "^7.2.8",
-    "react-router-dom": "^6.3.0",
-    "redux": "^4.1.2"
-  },
-  "type": "module"
+    "nodemon": "^2.0.15"
+  }
 }
