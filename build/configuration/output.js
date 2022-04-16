@@ -1,6 +1,10 @@
 const { clientOutputPath } = require('./context')
 const { NODE_ENV } = require('./env')
 
+/**
+ * 
+ * output 输出目录 
+ */
 const outputPath = () => {
   let options = {
     path: clientOutputPath,

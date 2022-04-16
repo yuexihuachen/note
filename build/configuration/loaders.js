@@ -2,6 +2,12 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const postcssNormalize = require("postcss-normalize");
 
+/**
+ * loaders 用于对模块的源代码进行转换
+ * loader 可以在 import 或 "load(加载)" 模块时预处理文件
+ * @param {*} preProcessor 
+ * @returns 
+ */
 const getStyleLoaders = (cssOptions, preProcessor) => {
   const loaders = [
     {

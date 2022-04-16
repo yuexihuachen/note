@@ -1,6 +1,9 @@
 const fs = require("fs");
 const { clientEntryPath } = require("./context");
 
+/**
+ * entry 入口
+ */
 const extnames = ["js", "jsx", "ts", "tsx"];
 
 const extname = extnames[0];
