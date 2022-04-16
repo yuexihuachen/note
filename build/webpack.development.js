@@ -1,5 +1,4 @@
 "use strict";
-const path = require('path')
 /**
  * 外部依赖配置
  */
@@ -52,19 +51,22 @@ const webpackConfig = {
     extensions: [".ts", ".tsx", ".js"],
   },
   module: {
-    rules: [
-      photoLoader, 
-      jsLoader, 
-      cssLoader, 
-      sACssLoader, 
-      fontsLoader
+    rules: [{
+      oneOf: [
+        photoLoader, 
+        jsLoader, 
+        cssLoader, 
+        sACssLoader, 
+        fontsLoader
+      ]
+    }
     ],
   },
   plugins: [
     miniCssExtractPluginFun(),
     compressionPluginFun(),
-    cleanWebpackPluginFun(),
-    manifestPluginFun()
+    manifestPluginFun(),
+    cleanWebpackPluginFun()
   ],
   performance: false,
   stats: {

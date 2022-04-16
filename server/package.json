@@ -12,6 +12,7 @@
   "author": "longwang",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.26.1",
     "guozishu-mango-logger": "^1.0.2",
     "koa": "^2.13.4",
     "koa-body": "^4.2.0",

@@ -6,6 +6,7 @@ import helmet from "./helmet";
 import favicon from "./favicon";
 import koaStatic from "./static";
 import logger from "./logger";
+import bundle from "./bundle";
 
 export default (app) => {
   app.use(logger);
@@ -15,5 +16,6 @@ export default (app) => {
   app.use(koaView);
   app.use(koaBody());
   app.use(compress());
+  app.use(bundle());
   app.use(routes());
 };

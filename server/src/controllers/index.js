@@ -1,5 +1,6 @@
 "use strict";
 async function index(ctx, next) {
+    ctx.logger.error('hello')
     await ctx.render('index')
 }
 

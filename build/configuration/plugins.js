@@ -55,7 +55,7 @@ function compressionPluginFun () {
 
 function manifestPluginFun () {
   return new WebpackManifestPlugin({
-    fileName: 'manifest.json',
+    fileName: 'asset-manifest.json',
     publicPath: '/',
     filter: function (file) {
       const flag = file.path.match(/.(js|css)$/)// && !file.path.includes('assets\/dist/')
