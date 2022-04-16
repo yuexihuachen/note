@@ -6,8 +6,6 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // 提供带 Content-Encoding 编码的压缩版的资源（gzip压缩）
 const CompressionPlugin = require('compression-webpack-plugin')
-// 用于优化\最小化CSS。
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 // 针对css容错处理，修复
 const safePostCssParser = require('postcss-safe-parser')
 // 清理插件--清理 /dist 文件夹

@@ -1,11 +1,5 @@
 "use strict";
-const webpack = require("webpack");
-const path = require("path")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
-// 清理插件--清理 /dist 文件夹
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-
+const path = require('path')
 /**
  * 外部依赖配置
  */
@@ -32,7 +26,6 @@ const [cssLoader, sACssLoader, photoLoader, fontsLoader, jsLoader] = [
 
 const {
   miniCssExtractPluginFun,
-  optimizeCSSAssetsPluginFun,
   compressionPluginFun,
   manifestPluginFun,
   cleanWebpackPluginFun,
@@ -48,7 +41,6 @@ console.log(`output: ${JSON.stringify(output, null, 4)}`);
 console.log(isEnvProduction);
 
 const webpackConfig = {
-  context: path.resolve(__dirname,'../client/src'),
   mode: "development",
   devtool: "cheap-module-source-map",
   entry,
@@ -60,12 +52,19 @@ const webpackConfig = {
     extensions: [".ts", ".tsx", ".js"],
   },
   module: {
-    rules: [photoLoader, jsLoader, cssLoader, sACssLoader, fontsLoader],
+    rules: [
+      photoLoader, 
+      jsLoader, 
+      cssLoader, 
+      sACssLoader, 
+      fontsLoader
+    ],
   },
   plugins: [
     miniCssExtractPluginFun(),
     compressionPluginFun(),
     cleanWebpackPluginFun(),
+    manifestPluginFun()
   ],
   performance: false,
   stats: {
