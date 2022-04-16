@@ -1,7 +1,7 @@
 import fs from "fs";
 
 /**
- * 加载资源的公共方法
+ * 加载外部资源的公共方法 js/css
  */
 export default () => {
   let source = {};

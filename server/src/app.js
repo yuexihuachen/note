@@ -3,7 +3,7 @@ import init from './middleware/index'
 const app = new Koa();
 
 app.use(async (ctx, next) => {
-    console.log(`${ctx.method} ${ctx.url} ${ctx.type}`);
+    console.log(`${ctx.method} ${ctx.url}`);
     await next()
 })
 

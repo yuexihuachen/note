@@ -1,3 +1,9 @@
+/**
+ * 路由配置文件
+ * match：路由名称
+ * controller： 控制器
+ * method： 方法
+ */
 export default [
   {
     match: '/',
