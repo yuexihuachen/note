@@ -1,6 +1,7 @@
 const safePostCssParser = require("postcss-safe-parser");
 const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = function (isEnvProduction) {
   return {
@@ -28,15 +29,7 @@ module.exports = function (isEnvProduction) {
         },
         parallel: true,
       }),
-      new OptimizeCSSAssetsPlugin({
-        cssProcessorOptions: {
-          parser: safePostCssParser,
-          map: false,
-        },
-        cssProcessorPluginOptions: {
-          preset: ["default", { minifyFontValues: { removeQuotes: false } }],
-        },
-      }),
+      new CssMinimizerPlugin(),
     ],
     splitChunks: {
       chunks: "initial", // 默认只作用于异步模块，为`all`时对所有模块生效,`initial`对同步模块有效

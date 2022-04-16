@@ -64,7 +64,6 @@ const webpackConfig = {
   },
   plugins: [
     miniCssExtractPluginFun(),
-    optimizeCSSAssetsPluginFun(),
     compressionPluginFun(),
     cleanWebpackPluginFun(),
   ],
