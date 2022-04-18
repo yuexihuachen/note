@@ -43,9 +43,9 @@ export default async (ctx, next) => {
         let scope = ctx.state.scope || {}
         scope = {
             ...{
-                title: '技术博客',
-                keywords: '前端，后端,linux,数据库,算法，设计模式',
-                description: '程序员'
+                title: 'Technical blog',
+                keywords: 'Front-end, back-end, linux, database, algorithm, design pattern',
+                description: 'study without limit'
             },
             ...scope
         }
