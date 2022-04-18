@@ -5,7 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/webpack --config ./webpack.development.js"
+    "build": "webpack --config ./webpack.development.js",
+    "watch": "webpack --watch --config ./webpack.development.js"
   },
   "author": "",
   "license": "ISC",
@@ -33,6 +34,7 @@
     "sass-loader": "^12.6.0",
     "terser-webpack-plugin": "^5.3.1",
     "ts-loader": "^9.2.8",
+    "webpack-bundle-analyzer": "^4.5.0",
     "webpack-manifest-plugin": "^5.0.0"
   },
   "devDependencies": {

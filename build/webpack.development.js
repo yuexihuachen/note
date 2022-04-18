@@ -5,6 +5,8 @@
 const { entry } = require("./configuration/entry");
 const { output } = require("./configuration/output");
 const optimizationFun = require("./configuration/optimization");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const env = require("./configuration/env")
 
 const {
   cssModule,
@@ -13,7 +15,6 @@ const {
   fontsModule,
   jsModule,
 } = require("./configuration/loaders");
-
 
 const [cssLoader, sACssLoader, photoLoader, fontsLoader, jsLoader] = [
   cssModule(),

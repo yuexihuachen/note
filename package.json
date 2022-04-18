@@ -10,7 +10,8 @@
     "dev": "nodemon -e js,html --exec babel-node --inspect server/src/app.js",
     "start": "node server/dist/app.js",
     "server:transform": "babel --config-file ./babel.config.json server/src --out-dir server/dist",
-    "build": "npm run build --prefix build"
+    "build": "npm run build --prefix build",
+    "watch": "npm run watch --prefix build"
   },
   "repository": {
     "type": "git",
