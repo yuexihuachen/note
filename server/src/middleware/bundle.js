@@ -11,7 +11,8 @@ export default () => {
     );
     source = assets;
   } catch (error) {
-    assert("load asset-manifest.json file failed!");
+    console.error("[error] load asset-manifest.json file failed!");
+    console.log('%c this is a message','color:#0f0;')
   }
 
   return async (ctx, next) => {

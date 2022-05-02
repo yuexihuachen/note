@@ -106,6 +106,9 @@ const jsModule = () => {
       {
         loader: "babel-loader"
       },
+      {
+        loader: 'ts-loader'
+      }
     ],
   }
 }

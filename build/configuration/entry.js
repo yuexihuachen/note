@@ -6,7 +6,7 @@ const { clientEntryPath } = require("./context");
  */
 const extnames = ["js", "jsx", "ts", "tsx"];
 
-const extname = extnames[0];
+const extname = extnames[3];
 
 function readPages(pagesPath) {
   const entries = {};
@@ -14,7 +14,7 @@ function readPages(pagesPath) {
   for (let dir of dirs) {
     entries[dir] = `${pagesPath}/${dir}/index.${extname}`;
   }
-  entries["common"] = `${clientEntryPath}/common/index.${extname}`;
+  entries["common"] = `${clientEntryPath}/common/index.${extnames[2]}`;
   return entries;
 }
 
