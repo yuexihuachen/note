@@ -13,6 +13,8 @@
     "@reduxjs/toolkit": "^1.8.1",
     "@types/react-dom": "^18.0.3",
     "axios": "^0.26.1",
+    "bulma": "^0.9.3",
+    "nanoid": "^3.3.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-markdown": "^8.0.3",

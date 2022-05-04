@@ -11,7 +11,17 @@ async function home(ctx, next) {
 
 async function search(ctx, next) {
     await ctx.renderJSON({
-        hello:'search'
+        response: {
+            data: {
+                list: [{
+                    name: 'longwang',
+                    age: 32
+                }],
+            },
+            name:'service api',
+            message: 'success',
+            code: 1
+        }
     })
 }
 

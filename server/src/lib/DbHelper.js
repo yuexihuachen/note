@@ -8,7 +8,7 @@ class DbClass {
       if (!db) {
         console.log(`createDb ${DBname}`);
         const sqlite3 = Sqlite3.verbose();
-        db = new sqlite3.Database(`server/database/${DBname}.sqlite3`);
+        db = new sqlite3.Database(`server/DB/${DBname}.sqlite3`);
       }
       if (!db) return reject("create db error");
       resolve(db);

@@ -7,8 +7,12 @@ import favicon from "./favicon";
 import koaStatic from "./static";
 import logger from "./logger";
 import bundle from "./bundle";
+import init from "./init";
+import main from "./main"
 
 export default (app) => {
+  app.use(init)
+  app.use(main)
   app.use(logger);
   app.use(koaStatic());
   app.use(favicon());
