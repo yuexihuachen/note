@@ -1,117 +1,120 @@
 "use strict";
-import Sqlite3 from "sqlite3";
+import Sqlite3 from 'sqlite3';
 let db;
 
-class DbClass {
-  createDb(DBname = "localdb") {
+export default class DbClass {
+  constructor(){
+    this.createDb()
+  }
+  createDb(DBname = 'note') {
     return new Promise((resolve, reject) => {
       if (!db) {
-        console.log(`createDb ${DBname}`);
         const sqlite3 = Sqlite3.verbose();
         db = new sqlite3.Database(`server/DB/${DBname}.sqlite3`);
       }
-      if (!db) return reject("create db error");
+      if (!db) return reject('create db error');
       resolve(db);
     });
   }
 
   createTable(tableName, options) {
-    let sqlParams = "";
+    let sqlParams = ''
     for (const key in options) {
-      sqlParams += `${key} ${options[key]},`;
+      sqlParams += `${key} ${options[key]},`
     }
-    sqlParams = sqlParams.slice(0, sqlParams.length - 1);
+    sqlParams = sqlParams.slice(0, sqlParams.length - 1)
     return new Promise((resolve, reject) => {
       let sql = `CREATE TABLE IF NOT EXISTS ${tableName} (
         id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
         ${sqlParams}
-        )`;
+        )`
       db.run(sql, function (err) {
         if (err) return reject(`create Tbale ${tableName} failed`);
-        resolve("success");
+        resolve('success');
       });
+
     });
   }
 
   insertTable(tableName, options) {
-    console.log(`insert Table ${tableName}`);
-    let sqlKeys = "",
-      sqlValues = "";
+    let sqlKeys = '', sqlValues = '';
     for (const key in options) {
-      sqlKeys += `${key},`;
-      sqlValues += `${options[key]},`;
+      sqlKeys += `${key},`
+      sqlValues += `"${options[key]}",`
     }
-    sqlKeys = sqlKeys.slice(0, sqlKeys.length - 1);
-    sqlValues = sqlValues.slice(0, sqlValues.length - 1);
-    const stmt = db.prepare(
-      `INSERT INTO ${tableName}(${sqlKeys}) VALUES (${sqlValues})`
-    );
+    sqlKeys = sqlKeys.slice(0, sqlKeys.length - 1)
+    sqlValues = sqlValues.slice(0, sqlValues.length - 1)
+    console.log(`INSERT INTO ${tableName}(${sqlKeys}) VALUES (${sqlValues})`)
+    const stmt = db.prepare(`INSERT INTO ${tableName}(${sqlKeys}) VALUES (${sqlValues})`);
     return new Promise((resolve, reject) => {
       stmt.run(function (err) {
         if (err) return reject(`insert Tbale ${tableName} failed`);
-        resolve("success");
+        resolve('success');
       });
     });
   }
 
-  deleteTableRows(tableName, options) {
-    // 一条数据
-    console.log(`delete Table ${tableName} Rows`);
-    let sqlParams = "";
+  deleteTableRows(tableName, options) { // 一条数据
+    let sqlParams = ''
     for (const key in options) {
-      sqlParams += `${key}=${options[key]}`;
+      sqlParams += `${key}=${options[key]}`
     }
     return new Promise((resolve, reject) => {
-      db.run(`DELETE FROM ${tableName} WHERE ${sqlParams}`, function (err) {
+      db.run(`DELETE FROM ${tableName} WHERE ${sqlParams}`, function (err, rows) {
         if (err) return reject(`delete Tbale ${tableName} rows failed`);
-        resolve("success");
+        resolve({
+          message: 'success',
+          data: rows
+        });
       });
     });
   }
 
-  updateTableRows(tableName, options, conditions) {
-    // 一条数据
-    console.log(`update Table ${tableName} rows`);
-    let sqlKeys = "",
-      newOptions = {};
+  updateTableRows(tableName, options, conditions) { // 一条数据
+    let sqlKeys = '', newOptions = {};
     for (const key in options) {
-      sqlKeys += `${key}=$${key},`;
-      newOptions[`$${key}`] = options[key];
+      sqlKeys += `${key}=$${key},`
+      newOptions[`$${key}`] = options[key]
     }
-    sqlKeys = sqlKeys.slice(0, sqlKeys.length - 1);
-    let sqlConditions = "";
+    sqlKeys = sqlKeys.slice(0, sqlKeys.length - 1)
+    let sqlConditions = ''
     for (const key in conditions) {
-      sqlConditions += `${key}=$${key}`;
-      newOptions[`$${key}`] = options[key];
+      sqlConditions += `${key}=$${key} `
+      newOptions[`$${key}`] = conditions[key]
     }
-    db.run(
-      `UPDATE ${tableName} SET ${sqlKeys} WHERE ${sqlConditions}`,
-      newOptions,
-      function (err) {
+    return new Promise((resolve, reject) => {
+      db.run(`UPDATE ${tableName} SET ${sqlKeys} WHERE ${sqlConditions}`, newOptions, function (err, rows) {
         if (err) return reject(`update Tbale ${tableName} rows failed`);
-        resolve("success");
-      }
-    );
+        resolve({
+          message: 'success',
+          data: rows
+        });
+      });
+    })
+    
   }
 
-  selectTable(tableName, params, conditions) {
-    console.log(`select Table ${tableName}`);
-    let sqlParams = params.join(",");
-    let sqlConditions = "",
-      newOptions = {};
+  selectTable(tableName, params, conditions, extendSql = '') {
+    // 查询的参数名称
+    let sqlParams = params.join(',')
+    // 查询的条件
+    let sqlConditions = '', newOptions = {}
     for (const key in conditions) {
-      sqlConditions += `${key}=$${key}`;
-      newOptions[`$${key}`] = options[key];
+      sqlConditions += `${key}=$${key} AND `
+      newOptions[`$${key}`] = conditions[key]
     }
-    db.all(
-      `SELECT ${sqlConditions} FROM ${tableName} WHERE ${sqlConditions}`,
-      newOptions,
-      function (err, rows) {
+    if (sqlConditions.length) {
+      sqlConditions = ` WHERE ${sqlConditions.slice(0, sqlConditions.length - 4)}`
+    }
+    // extendSql 扩展条件
+    return new Promise((resolve, reject) => {
+      db.all(`SELECT ${sqlParams} FROM ${tableName} ${sqlConditions} ${extendSql}`, newOptions, function (err, rows) {
         if (err) return reject(`select Tbale ${tableName} failed`);
-        resolve(rows);
-      }
-    );
+        resolve({
+          message: 'success',
+          data: rows
+        });
+      });
+    })
   }
 }
-
-export default DbClass;

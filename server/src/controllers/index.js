@@ -1,4 +1,7 @@
 "use strict";
+import DbClass from "../lib/DbHelper";
+const sqlite3 = new DbClass();
+
 async function index(ctx, next) {
     ctx.logger.error('hello')
     await ctx.render('index')
@@ -8,8 +11,8 @@ async function home(ctx, next) {
     await ctx.render('home')
 }
 
-
 async function search(ctx, next) {
+    const res = await sqlite3.selectTable('category', ['*'])
     await ctx.renderJSON({
         response: {
             data: {
@@ -20,7 +23,8 @@ async function search(ctx, next) {
             },
             name:'service api',
             message: 'success',
-            code: 1
+            code: 1,
+            res
         }
     })
 }
