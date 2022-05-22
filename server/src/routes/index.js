@@ -29,5 +29,17 @@ export default [
   {
     match: '/loginupdate',
     controller: 'login.update'
+  },
+  {
+    match: '/write',
+    controller: 'login.write'
+  },
+  {
+    match: '/getCategory',
+    controller: 'data.category'
+  },
+  {
+    match: '/:page',
+    controller: 'header.allPage'
   }
 ]

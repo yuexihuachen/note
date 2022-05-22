@@ -11,8 +11,13 @@ async function update(ctx, next) {
     })
 }
 
+async function write(ctx, next) {
+    await ctx.render('write')
+}
+
 
 export {
     login,
-    update
+    update,
+    write
 }

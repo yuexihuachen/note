@@ -12,7 +12,6 @@ async function home(ctx, next) {
 }
 
 async function search(ctx, next) {
-    const res = await sqlite3.selectTable('category', ['*'])
     await ctx.renderJSON({
         response: {
             data: {
@@ -23,8 +22,7 @@ async function search(ctx, next) {
             },
             name:'service api',
             message: 'success',
-            code: 1,
-            res
+            code: 1
         }
     })
 }

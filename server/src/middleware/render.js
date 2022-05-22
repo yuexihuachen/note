@@ -50,6 +50,7 @@ export default async (ctx, next) => {
             ...scope
         }
         const html = await render(tpl(pageName), scope)
+        ctx.state.scope = null
         ctx.body = html.trim().replace(/\n\s*/gmi, '')
     }
     /**
@@ -60,6 +61,7 @@ export default async (ctx, next) => {
     ctx.renderString = async (pageName) => {
         const scope = ctx.state.scope
         const template = fs.readFileSync(tpl(pageName))
+        ctx.state.scope = null
         return await renderString(template.toString(), scope)
     }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu } from './features/menu/Menu';
+import { Counter } from './features/counter/Counter';
 import { useGetSearchByNameQuery } from './app/services/counter'
 import './App.scss';
 
@@ -8,7 +8,9 @@ function App() {
   console.log(response)
   return (
     <div className="App">
-     <Menu />
+      <header className="App-header">
+        <Counter />
+      </header>
     </div>
   );
 }
