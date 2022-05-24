@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { categoryApi } from './services/category'
-import SubmitReducer from '../features/footer/footerSlice'
+import { categoryApi } from './services/category';
+import searchReducer from '../features/header/headerSlice'
 
 const store = configureStore({
   reducer: {
     [categoryApi.reducerPath]: categoryApi.reducer,
-    SubmitReducer
+    searchReducer
   },
   middleware: (getDefaultMiddleware) =>
   getDefaultMiddleware().concat(categoryApi.middleware),

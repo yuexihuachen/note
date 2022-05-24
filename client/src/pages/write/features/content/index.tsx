@@ -1,23 +1,22 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import codemirror from 'codemirror'
+import { changeContent, getDate } from '../footer/footerSlice'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import 'codemirror/addon/selection/active-line'
 import 'codemirror/addon/edit/matchbrackets'
 import './index.scss';
 
 export function Content() {
-  const markdown = `A paragraph with *emphasis* and **strong importance**.
-> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
-* Lists
-* [ ] todo
-* [x] done
-A table:
-| a | b |
-| - | - |
-`
-  const [value,setValue] = useState(markdown)
+  const dispatch = useAppDispatch()
+  const submitData = useAppSelector(getDate)
+  const setValue = (value: any) => {
+    dispatch(changeContent({
+      content: value
+    }))
+  }
   const editorRef = useRef(null);
   useEffect(()=>{
     let editor = codemirror.fromTextArea(editorRef.current, {
@@ -27,7 +26,7 @@ A table:
       direction: "ltl",
       styleActiveLine: true,
       matchBrackets: true,
-      value
+      value: submitData.content
     })
     editor.on("change", () => {
       setValue(editor.getValue())
@@ -41,7 +40,7 @@ A table:
               <div className="hero-body">
               <textarea 
                 ref={editorRef}
-                value={value}
+                value={submitData.content}
                 onChange={(e) => {setValue(e.target.value)}}>
               </textarea>
               </div>
@@ -52,7 +51,7 @@ A table:
               <div className="hero-body">
           <div className='markdown-body'>
             <ReactMarkdown
-              children={value}
+              children={submitData.content}
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw]} />
           </div>

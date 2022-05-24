@@ -71,6 +71,7 @@ export default async (ctx, next) => {
      */
     ctx.renderJSON = ctx.renderJson = async (data) => {
         ctx.body = JSON.stringify(data)
+
     }
 
     await next()

@@ -15,16 +15,17 @@ export default [
   },
   {
     match: '/search',
-    controller: 'index.search'
+    controller: 'login.search'
+  },
+  {
+    match: '/searchNote',
+    controller: 'login.searchNote',
+    method: 'post',
   },
   {
     match: '/update',
     method: 'post',
     controller: 'index.update'
-  },
-  {
-    match: '/login',
-    controller: 'login.login'
   },
   {
     match: '/loginupdate',
@@ -37,6 +38,20 @@ export default [
   {
     match: '/getCategory',
     controller: 'data.category'
+  },
+  {
+    match:'/isLogin',
+    controller: "login.isLogin"
+  },
+  {
+    match:'/login',
+    controller: "login.Login",
+    method: 'post'
+  },
+  {
+    match: '/setArticle',
+    controller: 'data.setArticle',
+    method: 'post'
   },
   {
     match: '/:page',

@@ -1,0 +1,30 @@
+.columns {
+    margin-top: .1rem;
+}
+
+.search-content {
+    min-height: 800px;
+    padding: 0 3rem;
+    .table-header {
+        .hero-body {
+            padding: 1rem 3rem;
+            font-weight: 600;
+            .control {
+                font-size: 1.2rem;
+            }
+        }
+        border-top: 1px solid #eaecef;
+        border-bottom: 1px solid #eaecef;
+    }
+    .columns {
+        border-bottom: 1px solid #eaecef;
+        font-weight: normal;
+    }
+    .columns:not(:last-child) {
+        margin-bottom: 0;
+    }
+    .hero-body {
+        font-size: 1.2rem;
+        padding: 1rem 3rem;
+    }
+}

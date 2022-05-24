@@ -44,12 +44,14 @@ export default class DbClass {
     }
     sqlKeys = sqlKeys.slice(0, sqlKeys.length - 1)
     sqlValues = sqlValues.slice(0, sqlValues.length - 1)
-    console.log(`INSERT INTO ${tableName}(${sqlKeys}) VALUES (${sqlValues})`)
     const stmt = db.prepare(`INSERT INTO ${tableName}(${sqlKeys}) VALUES (${sqlValues})`);
     return new Promise((resolve, reject) => {
       stmt.run(function (err) {
         if (err) return reject(`insert Tbale ${tableName} failed`);
-        resolve('success');
+        resolve({
+          data: 'add success',
+          message: 'success'
+        });
       });
     });
   }
@@ -105,6 +107,9 @@ export default class DbClass {
     }
     if (sqlConditions.length) {
       sqlConditions = ` WHERE ${sqlConditions.slice(0, sqlConditions.length - 4)}`
+    }
+    if (!sqlConditions.length && extendSql.length) {
+      extendSql = ` WHERE ${extendSql}`
     }
     // extendSql 扩展条件
     return new Promise((resolve, reject) => {

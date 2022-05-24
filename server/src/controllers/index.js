@@ -11,22 +11,6 @@ async function home(ctx, next) {
     await ctx.render('home')
 }
 
-async function search(ctx, next) {
-    await ctx.renderJSON({
-        response: {
-            data: {
-                list: [{
-                    name: 'longwang',
-                    age: 32
-                }],
-            },
-            name:'service api',
-            message: 'success',
-            code: 1
-        }
-    })
-}
-
 
 async function update(ctx, next) {
     await ctx.renderJSON({
@@ -37,6 +21,5 @@ async function update(ctx, next) {
 export {
     index,
     home,
-    search,
     update
 }
