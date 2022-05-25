@@ -7,7 +7,7 @@
 export default [
   {
     match: '/',
-    controller: 'index.index'
+    controller: 'home.index'
   },
   {
     match: '/home',
@@ -20,6 +20,11 @@ export default [
   {
     match: '/searchNote',
     controller: 'login.searchNote',
+    method: 'post',
+  },
+  {
+    match: '/checkNote',
+    controller: 'index.checkNote',
     method: 'post',
   },
   {
@@ -55,6 +60,6 @@ export default [
   },
   {
     match: '/:page',
-    controller: 'header.allPage'
+    controller: 'menubar.allPage'
   }
 ]

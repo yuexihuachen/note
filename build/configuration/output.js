@@ -8,7 +8,7 @@ const { NODE_ENV } = require('./env')
 const outputPath = () => {
   let options = {
     path: clientOutputPath,
-    filename: '[name].js'
+    filename: '[name].js',
   }
   if (NODE_ENV === 'production') {
     options =   {

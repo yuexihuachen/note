@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import 'codemirror/addon/selection/active-line'
 import 'codemirror/addon/edit/matchbrackets'
 import './index.scss';
+let editor: any = null
 
 export function Content() {
   const dispatch = useAppDispatch()
@@ -17,9 +18,17 @@ export function Content() {
       content: value
     }))
   }
+
   const editorRef = useRef(null);
+ 
   useEffect(()=>{
-    let editor = codemirror.fromTextArea(editorRef.current, {
+    if (editor) {
+      editor.setValue(submitData.content)
+    }
+  }, [editor])
+
+  useEffect(()=>{
+    editor = codemirror.fromTextArea(editorRef.current, {
       theme: "seti",
       lineNumbers: true,
       lineWrapping: true,

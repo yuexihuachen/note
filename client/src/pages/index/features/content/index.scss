@@ -1,5 +1,15 @@
-@import url(./styles/codemirror.css);
-@import url(./styles/seti.css);
+
+.article-content {
+  display: block;
+  width: 100%;
+  overflow: auto;
+}
+.article {
+  display: block;
+  max-width: 740px;
+    margin: 0 auto;
+    padding: 2rem 2.5rem;
+}
 
 .columns {
     margin-top: .1rem;
@@ -11,7 +21,6 @@
 
 .markdown-body {
     height: 800px;
-    overflow: auto;
 }
 .markdown-body table {
     display: block;

@@ -1,5 +1,5 @@
-import React from 'react';
-import { changePush, getDate } from '../footer/footerSlice'
+import React, { useEffect } from 'react';
+import { changePush, getDate, changeData } from '../footer/footerSlice'
 import { useGetCategoryByNameQuery } from '../../app/services/category'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import './index.scss';
@@ -14,7 +14,8 @@ export function Footer() {
       isPush: value?1:0
     }))
   }
-  const onSubmit = async () => {
+
+  const addNote = async () => {
     const category_id = (data.data.length && data.data[0].category_id)
     const { title, content, category, isPush } = submitData 
     if (!title || !content) {
@@ -24,11 +25,60 @@ export function Footer() {
         title,
         content,
         isPush,
-        category: category && category_id
+        category: category.length? category: category_id
       })
-      console.log(response)
+      return response
     }
   }
+
+  const updateNote = async (id: any) => {
+    const { title, content, category, isPush } = submitData 
+    if (!title || !content) {
+      alert('日记标题或内容不能为空');
+    } else {
+      const response = await axios.post('/setArticle', {
+        id,
+        title,
+        content,
+        isPush,
+        category
+      })
+      return response
+    }
+  }
+
+  const onSubmit = async () => {
+    const params = new URLSearchParams(location.search)
+    let id = params.get('id')
+    if (id) {
+      const response = await updateNote(id)
+      console.log("update",response)
+    } else {
+      const response = await addNote()
+      console.log("add",response)
+    }
+  }
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    let id = params.get('id')
+    if (id) {
+      axios.post('/searchNote', {
+        article_id: id
+      }).then(response => {
+        if (response?.data?.data?.length) {
+          const data: any = response.data.data[0]
+          dispatch(changeData({
+            title: data.title,
+            category: data.category_id,
+            content: data.content,
+            isPush: data.is_push
+          }))
+        }
+        console.log(response)
+      })
+    }
+  }, [])
 
   return (
     <div className="headers">

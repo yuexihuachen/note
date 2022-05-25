@@ -23,9 +23,17 @@ const submitSlice = createSlice({
     changePush(state, action: PayloadAction<any>) {
       state.isPush = action.payload.isPush
     },
+    changeData(state, action: PayloadAction<any>) {
+      state = Object.assign(state, {
+        title: action.payload.title,
+        category: action.payload.category,
+        content: action.payload.content,
+        isPush: action.payload.isPush
+      })
+    },
   },
 })
 
-export const { changeTitle, changeCategory, changeContent, changePush } = submitSlice.actions
+export const { changeTitle, changeCategory, changeContent, changePush, changeData } = submitSlice.actions
 export const getDate = (state: any) => state.SubmitReducer
 export default submitSlice.reducer

@@ -8,28 +8,28 @@ import axios from 'axios';
 
 export function Header() {
   const { data, isLoading } = useGetCategoryByNameQuery('getCategory')
-  let categoryList = [{category_id: -1,category_name: 'All'}]
+  let categoryList = [{category_id: '',category_name: 'All'}]
   if (!isLoading) {
     categoryList = categoryList.concat(deepClone(data.data))
   }
   const [title, setTitle] = useState('')
   const [category, setCategory] = useState('')
-  const [isPush, setIsPush] = useState('')
+  const [isPush, setIsPush] = useState('-1')
 
   const dispatch = useAppDispatch()
   const onSearch = () => {
     axios.post('/searchNote', {
       category,
       title, 
-      isPush
+      isPush: Number(isPush)
     }).then(response => {
       //console.log(response)
       dispatch(changeData({
         articles: response.data.data
       }))
     })
-   
   }
+
   return (
     <div className="headers">
       <div className="columns">

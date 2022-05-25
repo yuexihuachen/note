@@ -7,7 +7,7 @@
     <div class="navbar-menu">
         <div class="navbar-end">
             {% for item in category %}
-                <a class="navbar-item" href="/{{ item.alias_name }}">
+                <a class="navbar-item" href="/{{ item.alias_name }}?cid={{item.category_id}}">
                     <span class='{% if matchPage == item.alias_name %}is-active{% endif %}'>{{ item.category_name }}</span>
                 </a>
             {% endfor %}

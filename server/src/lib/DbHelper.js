@@ -110,7 +110,10 @@ export default class DbClass {
     }
     if (!sqlConditions.length && extendSql.length) {
       extendSql = ` WHERE ${extendSql}`
+    } else if (sqlConditions.length && extendSql.length) {
+      extendSql = ` AND ${extendSql}`
     }
+
     // extendSql 扩展条件
     return new Promise((resolve, reject) => {
       db.all(`SELECT ${sqlParams} FROM ${tableName} ${sqlConditions} ${extendSql}`, newOptions, function (err, rows) {

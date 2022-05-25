@@ -3,5 +3,7 @@ $footer-padding: 3rem 1.5rem;
 
 .is-active {
     color: $blue;
+    margin-bottom: -2px;
+    border-bottom: 3px solid #46bd87;
 }
 @import "~bulma/bulma";

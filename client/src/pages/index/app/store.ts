@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
-import { searchApi } from '../app/services/counter'
+import articleReducer from '../features/content/indexSlice';
+import { articlesApi } from './services/articles'
 
 const store = configureStore({
   reducer: {
-    counter: counterReducer,
-    [searchApi.reducerPath]: searchApi.reducer,
+    articleReducer: articleReducer,
+    [articlesApi.reducerPath]: articlesApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-  getDefaultMiddleware().concat(searchApi.middleware),
+  getDefaultMiddleware().concat(articlesApi.middleware),
 });
 
 export default store

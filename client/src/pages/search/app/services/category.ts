@@ -38,4 +38,14 @@ export const categoryApi = createApi({
 
 export const { useGetCategoryByNameQuery } = categoryApi
 
-export const getCategoryData = (state: any) => state
+export const getCategoryData = (state: any) => {
+  const queries = state.category.queries
+  if (queries['getCategoryByName("getCategory")'] && queries['getCategoryByName("getCategory")'].data) {
+    const category = state.category.queries['getCategoryByName("getCategory")'].data.data.reduce(function(prev: any,current:any) {
+      prev[current.category_id] = current.category_name
+      return prev
+    },{})
+    return category
+  }
+  return {}
+}

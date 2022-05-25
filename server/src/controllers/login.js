@@ -113,7 +113,8 @@ async function searchNote(ctx, next) {
         result.message = 'not login'
         return ctx.renderJson(result);
     }
-    const { category, title, isPush } = ctx.request.body;
+    let searchParams = [ 'article_id','title', 'category_id', 'is_push' ]
+    const { article_id, category, title, isPush } = ctx.request.body;
     let conditions = {}, extendSql =''
     if (category) {
         conditions.category_id = category
@@ -121,11 +122,15 @@ async function searchNote(ctx, next) {
     if (title) {
         extendSql = `title like '%${title}%'`
     }
-    if (isPush) {
+    if (isPush > -1) {
         conditions.is_push = isPush
     }
+    if (article_id) {
+        conditions.article_id = article_id
+        searchParams.push('content')
+    }
 
-    const response = await sqlite3.selectTable("article", [ 'article_id','title', 'category_id', 'is_push' ], conditions, extendSql);
+    const response = await sqlite3.selectTable("article", searchParams, conditions, extendSql);
     if (response.message.includes("success")) {
       result = {
         data: response.data,
@@ -134,7 +139,6 @@ async function searchNote(ctx, next) {
     }
     await ctx.renderJson(result);
 }
-
 
 export {
     Login,

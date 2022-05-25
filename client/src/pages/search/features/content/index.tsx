@@ -1,10 +1,14 @@
 import React from 'react';
 import { getData } from '../header/headerSlice'
 import { useAppSelector } from '../../app/hooks'
+import { getCategoryData } from '../../app/services/category'
 import './index.scss';
+
+const pushName = ['未发布','已发布']
 
 export function Content() {
   const articles = useAppSelector(getData)
+  const categorys = useAppSelector(getCategoryData)
   return (
     <div className="search-content">
       <div className="columns table-header">
@@ -13,7 +17,7 @@ export function Content() {
             <div className="hero-body">
               <div className="field">
                 <div className="control">
-                  #文章标识
+                  文章标识#
                 </div>
               </div>
             </div>
@@ -24,7 +28,7 @@ export function Content() {
             <div className="hero-body">
               <div className="field">
                 <div className="control">
-                  #文章标题
+                  文章标题#
                 </div>
               </div>
             </div>
@@ -35,7 +39,7 @@ export function Content() {
             <div className="hero-body">
               <div className="field">
                 <div className="control">
-                  #文章类别
+                  文章类别#
                 </div>
               </div>
             </div>
@@ -46,7 +50,7 @@ export function Content() {
             <div className="hero-body">
               <div className="field">
                 <div className="control">
-                  #是否发布
+                  是否发布#
                 </div>
               </div>
             </div>
@@ -57,7 +61,7 @@ export function Content() {
             <div className="hero-body">
               <div className="field">
                 <div className="control">
-                  #是否编辑
+                  是否编辑#
                 </div>
               </div>
             </div>
@@ -66,7 +70,7 @@ export function Content() {
       </div>
       {
         articles.map((item: any) => {
-         return <div className="columns" key={item.article_id}>
+         return <div className="columns item-hover" key={item.article_id}>
             <div className='column'>
               <section className="hero">
                 <div className="hero-body">
@@ -94,7 +98,7 @@ export function Content() {
                 <div className="hero-body">
                   <div className="field">
                     <div className="control">
-                    {item.category_id}
+                    {categorys[item.category_id]}
                     </div>
                   </div>
                 </div>
@@ -105,7 +109,7 @@ export function Content() {
                 <div className="hero-body">
                   <div className="field">
                     <div className="control">
-                    {item.is_push}
+                    {pushName[item.is_push]}
                     </div>
                   </div>
                 </div>
@@ -116,7 +120,7 @@ export function Content() {
                 <div className="hero-body">
                   <div className="field">
                     <div className="control">
-                      <a>编辑</a>
+                      <a target='_blank' href={`write?id=${item.article_id}`}>编辑</a>
                     </div>
                   </div>
                 </div>

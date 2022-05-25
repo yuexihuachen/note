@@ -53,7 +53,7 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
 // style文件regexes
 const cssRegex = /\.css$/
 const sassRegex =  /\.(scss|sass)$/
-const photoRegex = /\.(png|jpe?g|gif|bmp|jpeg)$/
+const photoRegex = /\.(png|jpg|gif|bmp|jpeg)$/
 const fontsRegex = /\.(woff|woff2|eot|ttf|otf|svg)$/
 const jsRegex = /\.(js|mjs|jsx|ts|tsx)$/
 
@@ -83,7 +83,7 @@ const photoModule = () => {
     test: photoRegex,
     type: "asset/resource",
     generator: {
-      filename: '[path]name][ext][query]'
+      filename: 'images/[name][ext][query]'
     }
   }
 }

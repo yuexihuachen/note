@@ -1,0 +1,21 @@
+.image.is-4by3 {
+  background-image: url('./images/home.jpg');
+  background-repeat: no-repeat;
+  background-position: 0 -60px;
+  background-size: cover;
+  border-radius: 4px;
+}
+.hero-body {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #eaecef;
+  a {
+    background-color: #3eaf7c;
+    padding: 1.2rem 2rem;
+    font-size: 1.5rem;
+  }
+  h1 {
+    font-size: 2rem; 
+    font-weight: 600;
+  }
+}

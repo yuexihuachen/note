@@ -48,13 +48,25 @@ async function setArticle(ctx, next) {
         result.message = 'not login'
         return ctx.renderJson(result);
     }
-    const { category, title, content, isPush } = ctx.request.body;
-    const response = await sqlite3.insertTable("article", {
-      title,
-      content,
-      category_id: category,
-      is_push: isPush,
-    });
+    const { id, category, title, content, isPush } = ctx.request.body;
+    let response = null
+    if (id) {
+      response = await sqlite3.updateTableRows("article", {
+        title,
+        content,
+        category_id: category,
+        is_push: isPush,
+      }, {
+        article_id: id
+      });
+    } else {
+      response = await sqlite3.insertTable("article", {
+        title,
+        content,
+        category_id: category,
+        is_push: isPush,
+      });
+    }
     if (response.message.includes("success")) {
       result = {
         data: response.data,

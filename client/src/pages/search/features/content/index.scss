@@ -5,6 +5,12 @@
 .search-content {
     min-height: 800px;
     padding: 0 3rem;
+    .item-hover {
+        margin-top: 0;
+        &:hover {
+            background-color: #eaecef;
+        }
+    }
     .table-header {
         .hero-body {
             padding: 1rem 3rem;
