@@ -11,6 +11,7 @@
     "start": "node server/dist/app.js",
     "server:transform": "babel --config-file ./babel.config.json server/src --out-dir server/dist",
     "build": "npm run build --prefix build",
+    "build:prod": "npm run build:prod --prefix build",
     "watch": "npm run watch --prefix build"
   },
   "repository": {
