@@ -2,13 +2,14 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import {nanoid} from 'nanoid'
 import type { RootState } from '../store'
 
-interface ISearch {
-    name: string
+interface ICategory {
+    data: Array<any>
+    message: string
 }
 
 // Define a service using a base URL and expected endpoints
-export const searchApi = createApi({
-  reducerPath: 'searchApi',
+export const categoryApi = createApi({
+  reducerPath: 'category',
   baseQuery: fetchBaseQuery({ 
     baseUrl: '/',
     prepareHeaders: (headers, { getState }) => {
@@ -22,7 +23,7 @@ export const searchApi = createApi({
     }
   }),
   endpoints: (builder) => ({
-    getSearchByName: builder.query<ISearch, string>({
+    getCategoryByName: builder.query<ICategory, string>({
       query: (name) => ({
         url: `${name}`,
         method: 'GET',
@@ -35,4 +36,6 @@ export const searchApi = createApi({
   }),
 })
 
-export const { useGetSearchByNameQuery } = searchApi
+export const { useGetCategoryByNameQuery } = categoryApi
+
+export const getCategoryData = (state: any) => state

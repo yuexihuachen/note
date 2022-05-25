@@ -23,7 +23,6 @@ export function Header() {
       title, 
       isPush: Number(isPush)
     }).then(response => {
-      //console.log(response)
       dispatch(changeData({
         articles: response.data.data
       }))

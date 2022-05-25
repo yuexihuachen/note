@@ -1,7 +1,10 @@
 import React from 'react'
+import { useGetCategoryByNameQuery } from '../../app/services/category'
 import './index.scss';
 
 export function Content() {
+  const { data, isLoading } = useGetCategoryByNameQuery('getCategory')
+  const jumpPage = !isLoading && data.data.length && `/${data.data[0].category_name}?cid=${data.data[0].category_id}`
   return (
     <React.Fragment>
       <div className="columns">
@@ -10,7 +13,7 @@ export function Content() {
           <div className="hero-body">
             <div className="field">
               <div className="control">
-              <a href='/JavaScript' className={`button is-success `}>开始 →</a>
+              <a href={`${jumpPage}`} className={`button is-success `}>开始 →</a>
               </div>
             </div>
           </div>

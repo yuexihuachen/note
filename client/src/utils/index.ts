@@ -38,8 +38,18 @@ const getUrlStrArgs = function (strNum = 1) {
     return args;
   };
 
+
+  const returnResult = function(result: any): void {
+    let str = '操作成功'
+    if (result) {
+      str = '操作失败'
+    }
+    alert(str)
+  }
+
 export {
     deepClone,
     getUrlStrArgs,
-    getQueryStringArgs
+    getQueryStringArgs,
+    returnResult
 }

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { changePush, getDate, changeData } from '../footer/footerSlice'
 import { useGetCategoryByNameQuery } from '../../app/services/category'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { returnResult } from '../../../../utils/index'
 import './index.scss';
 import axios from 'axios';
 
@@ -52,10 +53,12 @@ export function Footer() {
     let id = params.get('id')
     if (id) {
       const response = await updateNote(id)
-      console.log("update",response)
+      const msg = response?.data?.data?.message
+      returnResult(msg)
     } else {
       const response = await addNote()
-      console.log("add",response)
+      const msg = response?.data?.data?.message
+      returnResult(msg)
     }
   }
 
@@ -75,7 +78,6 @@ export function Footer() {
             isPush: data.is_push
           }))
         }
-        console.log(response)
       })
     }
   }, [])
