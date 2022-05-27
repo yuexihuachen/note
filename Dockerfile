@@ -1,11 +1,11 @@
 # pull the Node.js Docker image
-FROM node:alpine
+FROM node:12
 
 # create the directory inside the container
 WORKDIR /home/project/note
 
 # copy the package.json files from local machine to the workdir in container
-COPY package*.json ./
+# COPY package*.json ./
 
 # copy the generated modules and all other files to the container
 COPY . .
@@ -18,10 +18,14 @@ WORKDIR /home/project/note/client
 RUN npm install
 WORKDIR /home/project/note/server
 RUN npm install
+WORKDIR /home/project/note/build
+RUN npm install
 WORKDIR /home/project/note
 RUN npm install
 WORKDIR /home/project/note
-RUN npm run build
+RUN npm run build:prod
+WORKDIR /home/project/note
+RUN npm run server:transform
 
 # the command that starts our app
 # CMD ["npm", "start"]
