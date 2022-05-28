@@ -18,12 +18,8 @@ WORKDIR /home/project/note/client
 RUN npm install
 WORKDIR /home/project/note/server
 RUN npm install
-WORKDIR /home/project/note/build
-RUN npm install
 WORKDIR /home/project/note
 RUN npm install
-WORKDIR /home/project/note
-RUN npm run build:prod
 WORKDIR /home/project/note
 RUN npm run server:transform
 
