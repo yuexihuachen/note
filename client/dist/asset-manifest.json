@@ -1,0 +1,16 @@
+{
+    "assets": {
+        "home.css": "/home.css",
+        "home.js": "/home.js",
+        "index.css": "/index.css",
+        "index.js": "/index.js",
+        "login.js": "/login.js",
+        "search.css": "/search.css",
+        "search.js": "/search.js",
+        "write.css": "/write.css",
+        "write.js": "/write.js",
+        "common.css": "/common.css",
+        "common.js": "/common.js",
+        "common.frame.js": "/common.frame.js"
+    }
+}
