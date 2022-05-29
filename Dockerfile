@@ -20,9 +20,7 @@ WORKDIR /home/project/note/server
 RUN npm install
 WORKDIR /home/project/note
 RUN npm install
-WORKDIR /home/project/note
-RUN npm run server:transform
 
 # the command that starts our app
 # CMD ["npm", "start"]
-CMD ["npm", "run", "start"]
+CMD ["npm", "start"]
