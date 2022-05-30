@@ -11,7 +11,7 @@ import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import oneDark from 'react-syntax-highlighter/dist/esm/styles/prism/one-dark.js'
 import './index.scss';
 let editor: any = null
-oneDark.codeTagProps.style.whiteSpace = 'pre-wrap'
+
 export function Content() {
   const dispatch = useAppDispatch()
   const submitData = useAppSelector(getDate)
@@ -22,6 +22,9 @@ export function Content() {
   }
 
   const editorRef = useRef(null);
+  if (oneDark?.codeTagProps?.style) {
+    oneDark.codeTagProps.style.whiteSpace = 'pre-wrap'
+  }
  
   useEffect(()=>{
     if (editor) {
