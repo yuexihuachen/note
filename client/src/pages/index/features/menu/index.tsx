@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch } from '../../app/hooks'
 import { useGetSearchByNameQuery } from '../../app/services/articles'
+import { useGetCategoryByNameQuery } from '../../app/services/category'
+import { getQueryStringArgs } from '../../../../utils/index'
 import {
   changeContent,
 } from '../content/indexSlice';
 import axios from 'axios'
 import './index.scss';
 
+const query = getQueryStringArgs()
 
 export function Menu() {
   const dispatch = useAppDispatch()
+  const categorys = useGetCategoryByNameQuery('getCategory')
   const { data, isLoading } = useGetSearchByNameQuery('checkNote')
   const [articleId,setArticleId] = useState('')
+  const [category, setCategory] = useState('Javascript')
   const fetchArticle = (id: any) => {
     axios.post('/checkNote', {
       article_id: id
@@ -24,6 +29,13 @@ export function Menu() {
       }
     })
   }
+  useEffect(() => {
+    if (categorys?.data?.data) {
+      const categoryName = categorys.data.data.find(item => item.category_id == query.cid)
+      setCategory(categoryName.category_name)
+    }
+  }, [categorys.isLoading])
+
   useEffect(() => {
     if (!isLoading && data.data.length) {
       setArticleId(data.data[0].article_id)
@@ -40,7 +52,7 @@ export function Menu() {
     <div className="asider">
       <section className='sidebar-links'>
         <div className="sidebar-heading">
-          Javascript
+          {category}
         </div>
         <ul className='sidebar-ul sidebar-group-items'>
           {

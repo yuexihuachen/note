@@ -10,8 +10,6 @@ COPY . .
 RUN npm install && npm install --prefix server
 
 # copy the generated modules and all other files to the container
-
-
 # our app is running on port 3000 within the container, so need to expose it
 EXPOSE 3000
 
