@@ -6,6 +6,8 @@ import {
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import oneDark from 'react-syntax-highlighter/dist/esm/styles/prism/one-dark.js'
 import './index.scss';
 
 export function Article() {
@@ -18,7 +20,25 @@ export function Article() {
             <ReactMarkdown
               children={article}
               remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeRaw]} />
+              rehypePlugins={[rehypeRaw]}
+              components={{
+                code({node, inline, className, children, ...props}) {
+                  return !inline ? (
+                    <SyntaxHighlighter
+                      children={String(children).replace(/\n$/, '')}
+                      style={oneDark}
+                      language={'javascript'}
+                      PreTag="div"
+                      {...props}
+                    />
+                  ) : (
+                    <code className={className} {...props}>
+                      {children}
+                    </code>
+                  )
+                }
+              }}
+               />
           </div>
         </div>
 
