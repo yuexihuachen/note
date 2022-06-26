@@ -16,7 +16,7 @@ export function Menu() {
   const categorys = useGetCategoryByNameQuery('getCategory')
   const { data, isLoading } = useGetSearchByNameQuery('checkNote')
   const [articleId,setArticleId] = useState('')
-  const [category, setCategory] = useState('Javascript')
+  const [category, setCategory] = useState('')
   const fetchArticle = (id: any) => {
     axios.post('/checkNote', {
       article_id: id
