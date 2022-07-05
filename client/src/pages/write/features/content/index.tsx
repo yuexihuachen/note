@@ -7,6 +7,8 @@ import { changeContent, getDate } from '../footer/footerSlice'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import 'codemirror/addon/selection/active-line'
 import 'codemirror/addon/edit/matchbrackets'
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import oneDark from 'react-syntax-highlighter/dist/esm/styles/prism/one-dark.js'
 import './index.scss';
 let editor: any = null
 
@@ -20,6 +22,9 @@ export function Content() {
   }
 
   const editorRef = useRef(null);
+  if (oneDark?.codeTagProps?.style) {
+    oneDark.codeTagProps.style.whiteSpace = 'pre-wrap'
+  }
  
   useEffect(()=>{
     if (editor) {
@@ -62,7 +67,25 @@ export function Content() {
             <ReactMarkdown
               children={submitData.content}
               remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeRaw]} />
+              rehypePlugins={[rehypeRaw]}
+              components={{
+                code({node, inline, className, children, ...props}) {
+                  return !inline ? (
+                    <SyntaxHighlighter
+                      children={String(children).replace(/\n$/, '')}
+                      style={oneDark}
+                      language={'javascript'}
+                      PreTag="div"
+                      {...props}
+                    />
+                  ) : (
+                    <code className={className} {...props}>
+                      {children}
+                    </code>
+                  )
+                }
+              }}
+              />
           </div>
           </div>
         </section>

@@ -3,6 +3,9 @@
 
 .columns {
     margin-top: .1rem;
+    .column {
+        overflow: auto;
+    }
 }
 
 .CodeMirror {
@@ -11,7 +14,7 @@
 
 .markdown-body {
     height: 800px;
-    overflow: auto;
+    overflow: scroll;
 }
 .markdown-body table {
     display: block;

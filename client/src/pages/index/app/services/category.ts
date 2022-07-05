@@ -1,18 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import {nanoid} from 'nanoid'
-import { getQueryStringArgs } from '../../../../utils/index'
 import type { RootState } from '../store'
 
-const query = getQueryStringArgs()
-
-interface IResult {
+interface ICategory {
     data: Array<any>
     message: string
 }
 
 // Define a service using a base URL and expected endpoints
-export const articlesApi = createApi({
-  reducerPath: 'articlesApi',
+export const categoryApi = createApi({
+  reducerPath: 'category',
   baseQuery: fetchBaseQuery({ 
     baseUrl: '/',
     prepareHeaders: (headers, { getState }) => {
@@ -20,23 +17,23 @@ export const articlesApi = createApi({
       const token = (getState() as RootState)
 
       if (token) {
-        headers.set('authorization', `Bearer `)
+        headers.set('authorization', `Bearer ${token}`)
       }
       return headers
     }
   }),
   endpoints: (builder) => ({
-    getSearchByName: builder.query<IResult, string>({
+    getCategoryByName: builder.query<ICategory, string>({
       query: (name) => ({
         url: `${name}`,
-        method: 'POST',
-        body: {
-          category: query.cid,
-          isPush: 1
-        }
+        method: 'GET',
+        headers: {
+            'content-type': 'text/plain',
+        },
+        params: {name: name}
       }),
     }),
   }),
 })
 
-export const { useGetSearchByNameQuery } = articlesApi
+export const { useGetCategoryByNameQuery } = categoryApi
