@@ -24,7 +24,7 @@ export function Footer() {
     } else {
       const response = await axios.post('/setArticle', {
         title,
-        content,
+        content: encodeURIComponent(content),
         isPush,
         category: category.length? category: category_id
       })

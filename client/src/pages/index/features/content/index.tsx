@@ -16,7 +16,7 @@ export function Article() {
         <div className='columns'>
           <div className='column'>
             <ReactMarkdown
-              children={article}
+              children={ decodeURIComponent(article)}
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw]} />
           </div>
