@@ -49,6 +49,7 @@ async function setArticle(ctx, next) {
         return ctx.renderJson(result);
     }
     const { id, category, title, content, isPush } = ctx.request.body;
+    console.log(content)
     let response = null
     if (id) {
       response = await sqlite3.updateTableRows("article", {
@@ -62,7 +63,7 @@ async function setArticle(ctx, next) {
     } else {
       response = await sqlite3.insertTable("article", {
         title,
-        content,
+        content: encodeURIComponent(content),
         category_id: category,
         is_push: isPush,
       });
