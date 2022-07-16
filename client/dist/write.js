@@ -750,7 +750,7 @@ function Footer() {
           dispatch((0,_footer_footerSlice__WEBPACK_IMPORTED_MODULE_2__.changeData)({
             title: _data.title,
             category: _data.category_id,
-            content: _data.content,
+            content: decodeURIComponent(_data.content),
             isPush: _data.is_push
           }));
         }

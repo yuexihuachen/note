@@ -74,7 +74,7 @@ export function Footer() {
           dispatch(changeData({
             title: data.title,
             category: data.category_id,
-            content: data.content,
+            content: decodeURIComponent(data.content),
             isPush: data.is_push
           }))
         }
