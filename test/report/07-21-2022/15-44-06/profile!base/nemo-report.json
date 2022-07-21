@@ -1,0 +1,207 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2022-07-21T07:44:06.687Z",
+    "end": "2022-07-21T07:45:20.825Z",
+    "duration": 74138,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 1,
+    "hasOther": true,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "5509d0af-e07e-4bf1-8012-19d3be8df998",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [
+        {
+          "title": "\"before all\" hook in \"{root}\"",
+          "fullTitle": "\"before all\" hook in \"{root}\"",
+          "timedOut": false,
+          "duration": 0,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "if (Suite.tests.length > 0) {\n  return createNemo()\n    .then(bindNemo.bind(this));\n}\nreturn;",
+          "err": {},
+          "uuid": "ecaf1ffa-0e93-4ec0-b8d6-d299f826aa28",
+          "parentUUID": "5509d0af-e07e-4bf1-8012-19d3be8df998",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "afterHooks": [
+        {
+          "title": "\"after all\" hook: destroyNemo in \"{root}\"",
+          "fullTitle": "\"after all\" hook: destroyNemo in \"{root}\"",
+          "timedOut": false,
+          "duration": 0,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "log('destroyNemo: called');\nif (this.nemo) {\n  if (this.nemo.driver) {\n    log('Quitting nemo driver instance');\n    return this.nemo.driver.quit()\n      .then(function () {\n        log('destroyNemo: Quit driver');\n        return Promise.resolve();\n      });\n  }\n  log('Nemo instance does not have a driver to quit');\n}",
+          "err": {},
+          "uuid": "83035984-37d3-4a82-a6c7-8120a3b29468",
+          "parentUUID": "5509d0af-e07e-4bf1-8012-19d3be8df998",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "25dfc59f-d3d2-4b74-9470-8ec1b32755bf",
+          "title": "@render header",
+          "fullFile": "/Users/yuexihuachen/Documents/project/note/test/spec/home.js",
+          "file": "/test/spec/home.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"@render header\"",
+              "fullTitle": "@render header \"before all\" hook in \"@render header\"",
+              "timedOut": false,
+              "duration": 1675,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if (Suite.tests.length > 0) {\n  return createNemo()\n    .then(bindNemo.bind(this));\n}\nreturn;",
+              "err": {},
+              "uuid": "2311633a-0184-440a-a6d1-721035d0a982",
+              "parentUUID": "25dfc59f-d3d2-4b74-9470-8ec1b32755bf",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"before all\" hook in \"@render header\"",
+              "fullTitle": "@render header \"before all\" hook in \"@render header\"",
+              "timedOut": false,
+              "duration": 639,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// base url http://localhost:3000 \nawait this.nemo.driver.get(`${this.nemo.data.baseUrl}/`)\n// await this.nemo.view.homePageUI.footertitleWaitVisible()",
+              "err": {},
+              "uuid": "d8d07603-5515-4329-a1bc-ad896477e4a8",
+              "parentUUID": "25dfc59f-d3d2-4b74-9470-8ec1b32755bf",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook: destroyNemo for \"add number\"",
+              "fullTitle": "@render header \"after all\" hook: destroyNemo for \"add number\"",
+              "timedOut": false,
+              "duration": 24,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "log('destroyNemo: called');\nif (this.nemo) {\n  if (this.nemo.driver) {\n    log('Quitting nemo driver instance');\n    return this.nemo.driver.quit()\n      .then(function () {\n        log('destroyNemo: Quit driver');\n        return Promise.resolve();\n      });\n  }\n  log('Nemo instance does not have a driver to quit');\n}",
+              "err": {
+                "message": "NoSuchElementError: no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".sidebar-heading\"}\n  (Session info: chrome=103.0.5060.134)\n  (Driver info: chromedriver=103.0.5060.134 (8ec6fce403b3feb0869b0732eda8bd95011d333c-refs/branch-heads/5060@{#1262}),platform=Mac OS X 10.15.7 x86_64)",
+                "estack": "NoSuchElementError: no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".sidebar-heading\"}\n  (Session info: chrome=103.0.5060.134)\n  (Driver info: chromedriver=103.0.5060.134 (8ec6fce403b3feb0869b0732eda8bd95011d333c-refs/branch-heads/5060@{#1262}),platform=Mac OS X 10.15.7 x86_64)\n    at Object.checkLegacyResponse (node_modules/selenium-webdriver/lib/error.js:546:15)\n    at parseHttpResponse (node_modules/selenium-webdriver/lib/http.js:509:13)\n    at /Users/yuexihuachen/Documents/project/note/node_modules/selenium-webdriver/lib/http.js:441:30\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\nFrom: Task: WebDriver.findElement(By(css selector, .sidebar-heading))\n    at thenableWebDriverProxy.schedule (node_modules/selenium-webdriver/lib/webdriver.js:807:17)\n    at thenableWebDriverProxy.findElement (node_modules/selenium-webdriver/lib/webdriver.js:1014:17)\n    at Object.find (node_modules/selenium-drivex/index.js:24:33)\n    at Object.nemo.view._find (node_modules/nemo-view/lib/locreator.js:24:62)\n    at eval (eval at <anonymous> (test/spec/home.js:15:18), <anonymous>:1:11)\n    at Context.<anonymous> (test/spec/home.js:15:18)\nFrom: Task: WebElement.getText()\n    at thenableWebDriverProxy.schedule (node_modules/selenium-webdriver/lib/webdriver.js:807:17)\n    at WebElementPromise.schedule_ (node_modules/selenium-webdriver/lib/webdriver.js:2010:25)\n    at WebElementPromise.getText (node_modules/selenium-webdriver/lib/webdriver.js:2277:17)\n    at eval (eval at <anonymous> (test/spec/home.js:15:18), <anonymous>:1:37)\n    at Context.<anonymous> (test/spec/home.js:15:18)",
+                "diff": null
+              },
+              "uuid": "bd072c5b-27d3-4b71-a052-ee68ca3c1292",
+              "parentUUID": "25dfc59f-d3d2-4b74-9470-8ec1b32755bf",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "add number",
+              "fullTitle": "@render header add number",
+              "timedOut": false,
+              "duration": 63965,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const nemo = this.nemo\nconst firstMenu = await nemo.view.homePageUI.firstMenuWaitVisible()\nfirstMenu.click()\nawait nemo.driver.sleep(5000)\nconst text = await nemo.view._find(\".sidebar-heading\").getText()\nassert.equal(text, 'Javascript')\nawait nemo.driver.sleep(20000)",
+              "err": {
+                "message": "NoSuchElementError: no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".sidebar-heading\"}\n  (Session info: chrome=103.0.5060.134)\n  (Driver info: chromedriver=103.0.5060.134 (8ec6fce403b3feb0869b0732eda8bd95011d333c-refs/branch-heads/5060@{#1262}),platform=Mac OS X 10.15.7 x86_64)",
+                "estack": "NoSuchElementError: no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\".sidebar-heading\"}\n  (Session info: chrome=103.0.5060.134)\n  (Driver info: chromedriver=103.0.5060.134 (8ec6fce403b3feb0869b0732eda8bd95011d333c-refs/branch-heads/5060@{#1262}),platform=Mac OS X 10.15.7 x86_64)\n    at Object.checkLegacyResponse (node_modules/selenium-webdriver/lib/error.js:546:15)\n    at parseHttpResponse (node_modules/selenium-webdriver/lib/http.js:509:13)\n    at /Users/yuexihuachen/Documents/project/note/node_modules/selenium-webdriver/lib/http.js:441:30\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)\nFrom: Task: WebDriver.findElement(By(css selector, .sidebar-heading))\n    at thenableWebDriverProxy.schedule (node_modules/selenium-webdriver/lib/webdriver.js:807:17)\n    at thenableWebDriverProxy.findElement (node_modules/selenium-webdriver/lib/webdriver.js:1014:17)\n    at Object.find (node_modules/selenium-drivex/index.js:24:33)\n    at Object.nemo.view._find (node_modules/nemo-view/lib/locreator.js:24:62)\n    at Context.<anonymous> (test/spec/home.js:15:34)\nFrom: Task: WebElement.getText()\n    at thenableWebDriverProxy.schedule (node_modules/selenium-webdriver/lib/webdriver.js:807:17)\n    at WebElementPromise.schedule_ (node_modules/selenium-webdriver/lib/webdriver.js:2010:25)\n    at WebElementPromise.getText (node_modules/selenium-webdriver/lib/webdriver.js:2277:17)\n    at Context.<anonymous> (test/spec/home.js:15:60)",
+                "diff": null
+              },
+              "uuid": "19e8b6f3-c2e0-4b05-a272-5c91cadc4148",
+              "parentUUID": "25dfc59f-d3d2-4b74-9470-8ec1b32755bf",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "19e8b6f3-c2e0-4b05-a272-5c91cadc4148"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 63965,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 180000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 180000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "9.2.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": true,
+        "reportFilename": "nemo-report",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "5.0.0"
+    },
+    "marge": {
+      "options": {
+        "quiet": true,
+        "reportDir": "/Users/yuexihuachen/Documents/project/note/test/report/07-21-2022/15-44-06/profile!base",
+        "reportFilename": "nemo-report",
+        "assetsDir": "/Users/yuexihuachen/Documents/project/note/test/report/mochawesomeAssets"
+      },
+      "version": "4.1.0"
+    }
+  }
+}

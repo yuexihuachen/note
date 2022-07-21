@@ -1,0 +1,14 @@
+{
+  "firstMenu": {
+    "locator": ".navbar-end>.navbar-item:first-of-type",
+    "type": "css"
+  },
+  "commonTitle": {
+    "locator": ".sidebar-heading",
+    "type": "css"
+  },
+  "nodejsMenu": {
+    "locator": ".navbar-end>.navbar-item:nth-of-type(2)",
+    "type": "css"
+  }
+}
