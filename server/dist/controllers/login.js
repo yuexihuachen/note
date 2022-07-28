@@ -282,14 +282,18 @@ function _searchNote() {
             isLogin = _yield$checkLogin.data.isLogin;
 
             if (isLogin) {
-              _context7.next = 7;
+              _context7.next = 9;
               break;
             }
 
             result.message = 'not login';
-            return _context7.abrupt("return", ctx.renderJson(result));
+            _context7.next = 8;
+            return ctx.renderJson(result);
 
-          case 7:
+          case 8:
+            return _context7.abrupt("return", _context7.sent);
+
+          case 9:
             searchParams = ['article_id', 'title', 'category_id', 'is_push'];
             _ctx$request$body = ctx.request.body, article_id = _ctx$request$body.article_id, category = _ctx$request$body.category, title = _ctx$request$body.title, isPush = _ctx$request$body.isPush;
             conditions = {}, extendSql = '';
@@ -311,10 +315,10 @@ function _searchNote() {
               searchParams.push('content');
             }
 
-            _context7.next = 16;
+            _context7.next = 18;
             return sqlite3.selectTable("article", searchParams, conditions, extendSql);
 
-          case 16:
+          case 18:
             response = _context7.sent;
 
             if (response.message.includes("success")) {
@@ -324,10 +328,10 @@ function _searchNote() {
               };
             }
 
-            _context7.next = 20;
+            _context7.next = 22;
             return ctx.renderJson(result);
 
-          case 20:
+          case 22:
           case "end":
             return _context7.stop();
         }

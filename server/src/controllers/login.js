@@ -6,6 +6,7 @@ const sqlite3 = new DbClass();
 
 let result = {
     message: "failed",
+    code: -1,
     data: []
 };
 
@@ -67,6 +68,7 @@ async function Login(ctx, next) {
     }
     let result = {
         data: null,
+        code: -1,
         message: 'failed'
     }
     const data = await checkUser(ctx, {
@@ -77,6 +79,7 @@ async function Login(ctx, next) {
     if (time === pwds[1] && data.data.length && data.data[0].user_Id) {
         result = {
             data: data,
+            code: 0,
             message: 'success'
         }
         const token = guid(5);
@@ -110,7 +113,11 @@ async function search(ctx, next) {
 async function searchNote(ctx, next) {
     const { data: { isLogin } } = await checkLogin(ctx, next)
     if (!isLogin) {
-        result.message = 'not login'
+        result = {
+            message: "not login",
+            code: -1,
+            data: []
+        };
         return ctx.renderJson(result);
     }
     let searchParams = [ 'article_id','title', 'category_id', 'is_push' ]
@@ -134,6 +141,7 @@ async function searchNote(ctx, next) {
     if (response.message.includes("success")) {
       result = {
         data: response.data,
+        code: 0,
         message: "success"
       };
     }

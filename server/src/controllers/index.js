@@ -4,6 +4,7 @@ const sqlite3 = new DbClass();
 
 let result = {
     message: "failed",
+    code: -1,
     data: []
 };
 
@@ -51,6 +52,7 @@ async function update(ctx, next) {
     if (response.message.includes("success")) {
       result = {
         data: response.data,
+        code: 0,
         message: "success"
       };
     }

@@ -618,18 +618,24 @@ function Footer() {
             case 0:
               category_id = data.data.length && data.data[0].category_id;
               title = submitData.title, content = submitData.content, category = submitData.category, isPush = submitData.isPush;
+              response = {
+                data: {}
+              };
 
               if (!(!title || !content)) {
-                _context.next = 6;
+                _context.next = 7;
                 break;
               }
 
-              alert('日记标题或内容不能为空');
+              response.data = {
+                code: -1,
+                message: '日记标题或内容不能为空'
+              };
               _context.next = 10;
               break;
 
-            case 6:
-              _context.next = 8;
+            case 7:
+              _context.next = 9;
               return axios__WEBPACK_IMPORTED_MODULE_7___default().post('/setArticle', {
                 title: title,
                 content: encodeURIComponent(content),
@@ -637,11 +643,13 @@ function Footer() {
                 category: category.length ? category : category_id
               });
 
-            case 8:
+            case 9:
               response = _context.sent;
-              return _context.abrupt("return", response);
 
             case 10:
+              return _context.abrupt("return", response);
+
+            case 11:
             case "end":
               return _context.stop();
           }
@@ -658,18 +666,24 @@ function Footer() {
           switch (_context2.prev = _context2.next) {
             case 0:
               title = submitData.title, content = submitData.content, category = submitData.category, isPush = submitData.isPush;
+              response = {
+                data: {}
+              };
 
               if (!(!title || !content)) {
-                _context2.next = 5;
+                _context2.next = 6;
                 break;
               }
 
-              alert('日记标题或内容不能为空');
+              response.data = {
+                code: -1,
+                message: '日记标题或内容不能为空'
+              };
               _context2.next = 9;
               break;
 
-            case 5:
-              _context2.next = 7;
+            case 6:
+              _context2.next = 8;
               return axios__WEBPACK_IMPORTED_MODULE_7___default().post('/setArticle', {
                 id: id,
                 title: title,
@@ -678,11 +692,13 @@ function Footer() {
                 category: category
               });
 
-            case 7:
+            case 8:
               response = _context2.sent;
-              return _context2.abrupt("return", response);
 
             case 9:
+              return _context2.abrupt("return", response);
+
+            case 10:
             case "end":
               return _context2.stop();
           }
@@ -693,7 +709,7 @@ function Footer() {
 
   var onSubmit = function onSubmit() {
     return __awaiter(_this, void 0, void 0, /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-      var _a, _b, _c, _d, params, id, response, msg, _response, _msg;
+      var params, id, response, msg, _response, _msg;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
@@ -712,7 +728,7 @@ function Footer() {
 
             case 5:
               response = _context3.sent;
-              msg = (_b = (_a = response === null || response === void 0 ? void 0 : response.data) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.message;
+              msg = response === null || response === void 0 ? void 0 : response.data;
               (0,_utils_index__WEBPACK_IMPORTED_MODULE_5__.returnResult)(msg);
               _context3.next = 15;
               break;
@@ -723,7 +739,7 @@ function Footer() {
 
             case 12:
               _response = _context3.sent;
-              _msg = (_d = (_c = _response === null || _response === void 0 ? void 0 : _response.data) === null || _c === void 0 ? void 0 : _c.data) === null || _d === void 0 ? void 0 : _d.message;
+              _msg = _response === null || _response === void 0 ? void 0 : _response.data;
               (0,_utils_index__WEBPACK_IMPORTED_MODULE_5__.returnResult)(_msg);
 
             case 15:
@@ -985,10 +1001,10 @@ var getUrlStrArgs = function getUrlStrArgs() {
 };
 
 var returnResult = function returnResult(result) {
-  var str = '操作成功';
+  var str = result.message ? result.message : '操作成功';
 
-  if (result) {
-    str = '操作失败';
+  if (result.code) {
+    str = result.message ? result.message : '操作失败';
   }
 
   alert(str);

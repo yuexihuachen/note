@@ -531,10 +531,10 @@ var getUrlStrArgs = function getUrlStrArgs() {
 };
 
 var returnResult = function returnResult(result) {
-  var str = '操作成功';
+  var str = result.message ? result.message : '操作成功';
 
-  if (result) {
-    str = '操作失败';
+  if (result.code) {
+    str = result.message ? result.message : '操作失败';
   }
 
   alert(str);

@@ -39,13 +39,13 @@ const getUrlStrArgs = function (strNum = 1) {
   };
 
 
-  const returnResult = function(result: any): void {
-    let str = '操作成功'
-    if (result) {
-      str = '操作失败'
-    }
-    alert(str)
+const returnResult = function (result: any): void {
+  let str = result.message ? result.message : '操作成功'
+  if (result.code) {
+    str = result.message ? result.message : '操作失败'
   }
+  alert(str)
+}
 
 export {
     deepClone,

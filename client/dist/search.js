@@ -575,6 +575,12 @@ function Header() {
       title: title,
       isPush: Number(isPush)
     }).then(function (response) {
+      var _a, _b;
+
+      if ((_b = (_a = response === null || response === void 0 ? void 0 : response.data) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.code) {
+        alert('搜索异常');
+      }
+
       dispatch((0,_headerSlice__WEBPACK_IMPORTED_MODULE_4__.changeData)({
         articles: response.data.data
       }));
@@ -760,10 +766,10 @@ var getUrlStrArgs = function getUrlStrArgs() {
 };
 
 var returnResult = function returnResult(result) {
-  var str = '操作成功';
+  var str = result.message ? result.message : '操作成功';
 
-  if (result) {
-    str = '操作失败';
+  if (result.code) {
+    str = result.message ? result.message : '操作失败';
   }
 
   alert(str);

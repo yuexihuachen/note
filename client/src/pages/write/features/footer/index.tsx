@@ -12,40 +12,54 @@ export function Footer() {
   const { data } = useGetCategoryByNameQuery('getCategory')
   const setPush = (value: any) => {
     dispatch(changePush({
-      isPush: value?1:0
+      isPush: value ? 1 : 0
     }))
   }
 
   const addNote = async () => {
     const category_id = (data.data.length && data.data[0].category_id)
-    const { title, content, category, isPush } = submitData 
+    const { title, content, category, isPush } = submitData
+    let response = {
+      data: {
+      }
+    }
     if (!title || !content) {
-      alert('日记标题或内容不能为空');
+      response.data = {
+        code: -1,
+        message: '日记标题或内容不能为空'
+      }
     } else {
-      const response = await axios.post('/setArticle', {
+      response = await axios.post('/setArticle', {
         title,
         content: encodeURIComponent(content),
         isPush,
-        category: category.length? category: category_id
+        category: category.length ? category : category_id
       })
-      return response
     }
+    return response
   }
 
   const updateNote = async (id: any) => {
-    const { title, content, category, isPush } = submitData 
+    const { title, content, category, isPush } = submitData
+    let response = {
+      data: {
+      }
+    }
     if (!title || !content) {
-      alert('日记标题或内容不能为空');
+      response.data = {
+        code: -1,
+        message: '日记标题或内容不能为空'
+      }
     } else {
-      const response = await axios.post('/setArticle', {
+      response = await axios.post('/setArticle', {
         id,
         title,
         content: encodeURIComponent(content),
         isPush,
         category
       })
-      return response
     }
+    return response
   }
 
   const onSubmit = async () => {
@@ -53,11 +67,11 @@ export function Footer() {
     let id = params.get('id')
     if (id) {
       const response = await updateNote(id)
-      const msg = response?.data?.data?.message
+      const msg = response?.data
       returnResult(msg)
     } else {
       const response = await addNote()
-      const msg = response?.data?.data?.message
+      const msg = response?.data
       returnResult(msg)
     }
   }
@@ -86,29 +100,29 @@ export function Footer() {
     <div className="headers">
       <div className="columns">
         <div className="column">
-            <section className="hero">
-              <div className="hero-body">
-                <div className="field">
-                  <div className="control">
+          <section className="hero">
+            <div className="hero-body">
+              <div className="field">
+                <div className="control">
                   <label className="checkbox is-push">
                     <input type="checkbox" checked={submitData.isPush} onChange={e => setPush(e.target.checked)} />
                     是否发布
                   </label>
-                  </div>
                 </div>
               </div>
-            </section>
+            </div>
+          </section>
         </div>
         <div className="column">
-        <section className="hero is-bold">
-              <div className="hero-body">
-                <div className="field">
-                  <div className="control">
+          <section className="hero is-bold">
+            <div className="hero-body">
+              <div className="field">
+                <div className="control">
                   <button onClick={onSubmit} className={`button  is-success is-fullwidth `}>提交</button>
-                  </div>
                 </div>
               </div>
-            </section>
+            </div>
+          </section>
         </div>
       </div>
     </div>

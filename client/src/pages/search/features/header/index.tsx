@@ -23,6 +23,9 @@ export function Header() {
       title, 
       isPush: Number(isPush)
     }).then(response => {
+      if (response?.data?.data?.code) {
+        alert('搜索异常')
+      }
       dispatch(changeData({
         articles: response.data.data
       }))
