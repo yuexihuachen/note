@@ -26,6 +26,7 @@ var _DbHelper = _interopRequireDefault(require("../lib/DbHelper"));
 var sqlite3 = new _DbHelper["default"]();
 var result = {
   message: "failed",
+  code: -1,
   data: []
 };
 
@@ -191,6 +192,7 @@ function _Login() {
 
             result = {
               data: null,
+              code: -1,
               message: 'failed'
             };
             _context5.next = 8;
@@ -205,6 +207,7 @@ function _Login() {
             if (time === pwds[1] && data.data.length && data.data[0].user_Id) {
               result = {
                 data: data,
+                code: 0,
                 message: 'success'
               };
               token = (0, _utils.guid)(5);
@@ -282,18 +285,18 @@ function _searchNote() {
             isLogin = _yield$checkLogin.data.isLogin;
 
             if (isLogin) {
-              _context7.next = 9;
+              _context7.next = 7;
               break;
             }
 
-            result.message = 'not login';
-            _context7.next = 8;
-            return ctx.renderJson(result);
+            result = {
+              message: "not login",
+              code: -1,
+              data: []
+            };
+            return _context7.abrupt("return", ctx.renderJson(result));
 
-          case 8:
-            return _context7.abrupt("return", _context7.sent);
-
-          case 9:
+          case 7:
             searchParams = ['article_id', 'title', 'category_id', 'is_push'];
             _ctx$request$body = ctx.request.body, article_id = _ctx$request$body.article_id, category = _ctx$request$body.category, title = _ctx$request$body.title, isPush = _ctx$request$body.isPush;
             conditions = {}, extendSql = '';
@@ -315,23 +318,24 @@ function _searchNote() {
               searchParams.push('content');
             }
 
-            _context7.next = 18;
+            _context7.next = 16;
             return sqlite3.selectTable("article", searchParams, conditions, extendSql);
 
-          case 18:
+          case 16:
             response = _context7.sent;
 
             if (response.message.includes("success")) {
               result = {
                 data: response.data,
+                code: 0,
                 message: "success"
               };
             }
 
-            _context7.next = 22;
+            _context7.next = 20;
             return ctx.renderJson(result);
 
-          case 22:
+          case 20:
           case "end":
             return _context7.stop();
         }

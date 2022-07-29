@@ -19,6 +19,7 @@ var _DbHelper = _interopRequireDefault(require("../lib/DbHelper"));
 var sqlite3 = new _DbHelper["default"]();
 var result = {
   message: "failed",
+  code: -1,
   data: []
 };
 
@@ -143,6 +144,7 @@ function _checkNote() {
             if (response.message.includes("success")) {
               result = {
                 data: response.data,
+                code: 0,
                 message: "success"
               };
             }

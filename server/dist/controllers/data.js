@@ -20,6 +20,7 @@ var _DbHelper = _interopRequireDefault(require("../lib/DbHelper"));
 var sqlite3 = new _DbHelper["default"]();
 var result = {
   message: "failed",
+  code: -1,
   data: []
 };
 /**
@@ -128,7 +129,11 @@ function _setArticle() {
               break;
             }
 
-            result.message = 'not login';
+            result = {
+              message: "not login",
+              code: -1,
+              data: []
+            };
             return _context3.abrupt("return", ctx.renderJson(result));
 
           case 7:
@@ -172,6 +177,7 @@ function _setArticle() {
             if (response.message.includes("success")) {
               result = {
                 data: response.data,
+                code: 0,
                 message: "success"
               };
             }

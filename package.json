@@ -15,7 +15,8 @@
     "watch": "npm run watch --prefix build",
     "setup": "npm install && npm install --prefix client && npm install --prefix server ",
     "test:functional": "nemo -B test",
-    "test:functional:debug": "nemo -B test --inspect-brk --inspect"
+    "test:functional:debug": "nemo -B test --inspect-brk --inspect",
+    "clean": "rm -rf node_modules client/node_modules server/node_modules"
   },
   "repository": {
     "type": "git",
