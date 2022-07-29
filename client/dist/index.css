@@ -9,6 +9,7 @@
   box-sizing: border-box;
   border-right: 1px solid #eaecef;
   min-height: 100vh;
+  height: 800px;
   overflow: auto;
 }
 
