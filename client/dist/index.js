@@ -23,20 +23,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function App() {
-  var callback = function callback() {
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    console.log(args);
-  };
-
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "App"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Profiler, {
-    id: "prifiler",
-    onRender: callback
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_menu__WEBPACK_IMPORTED_MODULE_1__.Menu, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_content__WEBPACK_IMPORTED_MODULE_2__.Article, null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_menu__WEBPACK_IMPORTED_MODULE_1__.Menu, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_features_content__WEBPACK_IMPORTED_MODULE_2__.Article, null));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);

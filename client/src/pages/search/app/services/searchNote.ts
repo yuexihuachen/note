@@ -49,7 +49,7 @@ const axiosBaseQuery =
     }
   })
 
-  console.log(axiosBaseQuery, featchBaseQuery)
+  console.log(featchBaseQuery)
 
 // Define a service using a base URL and expected endpoints
 export const searchNoteApi = createApi({

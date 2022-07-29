@@ -62,12 +62,6 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _index_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.scss */ "../client/src/common/index.scss");
 
-
-function common() {
-  console.log('common.js');
-}
-
-common();
 })();
 
 /******/ })()
