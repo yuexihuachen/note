@@ -67,7 +67,7 @@ const webpackConfig = {
     miniCssExtractPluginFun(),
     compressionPluginFun(),
     manifestPluginFun(),
-    cleanWebpackPluginFun()
+    cleanWebpackPluginFun(),
   ],
   performance: false,
   stats: {
