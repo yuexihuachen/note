@@ -4,10 +4,18 @@ FROM node:12
 # create the directory inside the container
 WORKDIR /home/project/note
 
+COPY package*.json ./
+
+RUN npm install 
+
+RUN mkdir server
+
+COPY server/package*.json ./server/
+
+RUN npm install --prefix server
+
 # copy the package.json files from local machine to the workdir in container
 COPY . .
-
-RUN npm install && npm install --prefix server
 
 # copy the generated modules and all other files to the container
 # our app is running on port 3000 within the container, so need to expose it
