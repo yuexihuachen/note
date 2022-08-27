@@ -4,10 +4,6 @@ FROM node:12
 # create the directory inside the container
 WORKDIR /home/project/note
 
-COPY package*.json ./
-
-RUN npm install 
-
 RUN mkdir server
 
 COPY server/package*.json ./server/
