@@ -138,15 +138,14 @@ function _setArticle() {
 
           case 7:
             _ctx$request$body = ctx.request.body, id = _ctx$request$body.id, category = _ctx$request$body.category, title = _ctx$request$body.title, content = _ctx$request$body.content, isPush = _ctx$request$body.isPush;
-            console.log(content);
             response = null;
 
             if (!id) {
-              _context3.next = 16;
+              _context3.next = 15;
               break;
             }
 
-            _context3.next = 13;
+            _context3.next = 12;
             return sqlite3.updateTableRows("article", {
               title: title,
               content: content,
@@ -156,24 +155,24 @@ function _setArticle() {
               article_id: id
             });
 
-          case 13:
+          case 12:
             response = _context3.sent;
-            _context3.next = 19;
+            _context3.next = 18;
             break;
 
-          case 16:
-            _context3.next = 18;
+          case 15:
+            _context3.next = 17;
             return sqlite3.insertTable("article", {
               title: title,
-              content: encodeURIComponent(content),
+              content: content,
               category_id: category,
               is_push: isPush
             });
 
-          case 18:
+          case 17:
             response = _context3.sent;
 
-          case 19:
+          case 18:
             if (response.message.includes("success")) {
               result = {
                 data: response.data,
@@ -182,10 +181,10 @@ function _setArticle() {
               };
             }
 
-            _context3.next = 22;
+            _context3.next = 21;
             return ctx.renderJson(result);
 
-          case 22:
+          case 21:
           case "end":
             return _context3.stop();
         }
